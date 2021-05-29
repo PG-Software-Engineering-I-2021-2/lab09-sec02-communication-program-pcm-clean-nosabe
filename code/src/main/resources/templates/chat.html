@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Chat</title>
+</head>
+<body>
+<span th:if="${session.user!=null}"> Bienvenido/a <span th:text="${session.user.nombres}"></span></span>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Cerrar Sesion"/>
+</form>
+
+</body>
+</html>
