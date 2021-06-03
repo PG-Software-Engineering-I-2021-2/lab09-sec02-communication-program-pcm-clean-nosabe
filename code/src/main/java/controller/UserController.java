@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 public class UserController {
@@ -31,7 +33,7 @@ public class UserController {
     public String chat(Authentication auth, HttpSession session) {
         String username = auth.getName();
         if (session.getAttribute("user") == null){
-            User user = userRepository.findByUsername(username);
+            var user = userRepository.findByUsername(username);
             user.setPassword(null);
             session.setAttribute("user",user);
         }
@@ -60,8 +62,11 @@ public class UserController {
     @GetMapping("/fetchAllUsers")
     public List<User> fetchALl() {
         List<User> lista = userRepository.findAll();
+
+        var logger = Logger.getLogger(UserController.class.getName());
+
         for (var i : lista){
-            System.out.println(i.getUsername());
+            logger.log(Level.INFO, i.getUsername());
         }
         return lista;
     }

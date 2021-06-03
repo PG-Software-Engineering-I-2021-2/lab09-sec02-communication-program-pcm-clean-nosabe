@@ -1,13 +1,15 @@
 package controller;
 
 import data.entities.Message;
-import data.entities.User;
 import data.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 public class MessageController {
@@ -20,8 +22,11 @@ public class MessageController {
 
     @MessageMapping("/chat/{to}")
     public void sendMessage(@DestinationVariable String to, Message message) {
-        System.out.println("handling send message: " + message + " to: " + to );
-        User user = userRepository.findByUsername(to);
+        var logger = Logger.getLogger(MessageController.class.getName());
+
+        logger.log(Level.INFO,"handling send message: {0}", message);
+        logger.log(Level.INFO," to:{0} ", to );
+        var user = userRepository.findByUsername(to);
         if (user != null){
             simpMessagingTemplate.convertAndSend("/messages/" + to, message);
         }

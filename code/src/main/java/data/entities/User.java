@@ -1,15 +1,10 @@
 package data.entities;
 
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import static config.GlobalConstants.DB_CHAR_LENGTH;
 import static config.GlobalConstants.DB_DNI_LENGTH;
@@ -40,6 +35,7 @@ public class User {
     private String email;
     
     public User(){
+        //default implementation ignored
     }
 
     public void setUsername(String dniUser) {

@@ -2,15 +2,15 @@ package data.entities;
 
 public class Message {
 
-    private String message;
+    private String content;
     private String fromLogin;
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getFromLogin() {
@@ -24,7 +24,7 @@ public class Message {
     @Override
     public String toString() {
         return "Message{" +
-                "message='" + message + '\'' +
+                "message='" + content + '\'' +
                 ", fromLogin='" + fromLogin + '\'' +
                 '}';
     }
