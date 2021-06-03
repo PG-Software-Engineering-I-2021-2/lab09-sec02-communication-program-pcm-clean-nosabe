@@ -11,9 +11,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -55,6 +57,16 @@ public class UserController {
             model.addAttribute("user", userService.registrar(user));
             return "redirect:/registro?success";
         }
+    }
+
+    @GetMapping("/fetchAllUsers")
+    public List<User> fetchALl() {
+        System.out.println("asasdasdasd");
+        List<User> lista = userRepository.findAll();
+        for (var i : lista){
+            System.out.println(i.getUsername());
+        }
+        return lista;
     }
 
 }
