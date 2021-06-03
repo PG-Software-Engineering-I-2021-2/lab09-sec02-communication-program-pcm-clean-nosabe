@@ -3,6 +3,19 @@ let stompClient;
 let selectedUser;
 let newMessages = new Map();
 
+function selectUser(userName) {
+    console.log("selecting users: " + userName);
+    selectedUser = userName;
+    let isNew = document.getElementById("newMessage_" + userName) !== null;
+    if (isNew) {
+        let element = document.getElementById("newMessage_" + userName);
+        element.parentNode.removeChild(element);
+        render(newMessages.get(userName), userName);
+    }
+    $('#selectedUserId').html('');
+    $('#selectedUserId').append('Chat with ' + userName);
+}
+
 function fetchAll() {
     $.get(url + "/fetchAllUsers", function (response) {
         let users = response;
