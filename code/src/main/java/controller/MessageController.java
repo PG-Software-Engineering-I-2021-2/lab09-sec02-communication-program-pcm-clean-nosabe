@@ -28,7 +28,7 @@ public class MessageController {
         logger.log(Level.INFO," to:{0} ", to );
         var user = userRepository.findByUsername(to);
         if (user != null){
-            simpMessagingTemplate.convertAndSend("/messages/" + to, message);
+            simpMessagingTemplate.convertAndSend("/topic/messages/" + to, message);
         }
     }
 }
