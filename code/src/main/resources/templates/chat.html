@@ -7,10 +7,10 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="/css/main.css" />
 </head>
-<body th:background="@{/img/18.jpg}"
+<body th:background="@{/img/pexels.jpg}"
       style="background-position: center; background-repeat: no-repeat; background-size: cover;">
-<span class="hidden" th:if="${session.user!=null}"> Bienvenido/a <span id="user" th:text="${session.user.username}"></span></span>
-<span th:if="${session.user!=null}"> Bienvenido/a <span id="nombre" th:text="${session.user.nombres}"></span></span>
+<span class="hidden"  th:if="${session.user!=null}"> Bienvenido/a <span id="user" th:text="${session.user.username}"></span></span>
+<span th:if="${session.user!=null}" style="font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 250%;"> Bienvenido/a <span id="nombre" th:text="${session.user.nombres}"></span></span>
 
     <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>

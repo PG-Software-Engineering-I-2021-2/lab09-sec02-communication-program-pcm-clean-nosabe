@@ -6,12 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import java.io.Serializable;
+
 import static config.GlobalConstants.DB_CHAR_LENGTH;
 import static config.GlobalConstants.DB_DNI_LENGTH;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @NotEmpty
