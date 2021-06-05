@@ -6,39 +6,57 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="/css/main.css" />
-</head>
-<body th:background="@{/img/pexels.jpg}"
-      style="background-position: center; background-repeat: no-repeat; background-size: cover;">
-<span class="hidden"  th:if="${session.user!=null}"> Bienvenido/a <span id="user" th:text="${session.user.username}"></span></span>
-<span th:if="${session.user!=null}" style="font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 250%;"> Bienvenido/a <span id="nombre" th:text="${session.user.nombres}"></span></span>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<span class="hidden"  th:if="${session.user!=null}"> Bienvenido/a <span id="user" th:text="${session.user.username}"></span></span>
+<span th:if="${session.user!=null}" style="font-family: 'Rubik', sans-serif; font-weight: bold; font-size: 250%;"> Bienvenido/a <span id="nombre" th:text="${session.user.nombres}"></span></span>
+<div class="col-md-9">
+<form id="logoutEmail" th:action="@{/email}" method="get" class="btn btn-light">
+    <input type="submit" value="Enviar email"/>
+</form>
+<form id="logoutForm" th:action="@{/logout}" onsubmit="return leave()" method="post" class="btn btn-light">
+    <input type="submit" value="Cerrar Sesion"/>
+</form>
+</div>
     <noscript>
         <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
+<div class="container-fluid h-100">
+    <div id="chat-page", class="main">
+        <div class="row justify-content-center h-100">
+        <div class="col-md-8 col-xl-6">
+            <div class="card">
+                <div class="card-header" style="font-family: 'Rubik', sans-serif;">
+                    <h2>República del Perú - PCM </h2>
 
-    <div id="chat-page">
-        <div class="chat-container">
-            <div class="chat-header">
-                <h2>Republica del Perú - PCM</h2>
-                <form id="logoutForm" th:action="@{/logout}" onsubmit="return leave()" method="post">
-                    <input type="submit" value="Cerrar Sesion"/>
-                </form>
-            </div>
+                </div>
 <!--            <div class="connecting">Conectando...</div>-->
             <ul id="messageArea">
 
             </ul>
-            <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..."
-                               autocomplete="off" class="form-control" />
-                        <button type="submit" class="primary">Enviar</button>
+            <form id="messageForm" name="messageForm" class="card-footer">
+                <div class="input-group">
+                    <textarea id="message" class="form-control all-input" placeholder="Type your message..."></textarea>
+                    <div class="input-group-append">
+                        <button class="fas fa-location-arrow" type="submit"></button>
                     </div>
                 </div>
             </form>
         </div>
-    </div>>
+    </div></div>
+    </div>
+</div>
 
 
 <script

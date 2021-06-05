@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Registro</title>
+  <title>Send Email</title>
 
   <!--JQUERY-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,37 +25,26 @@
       <div class="col-12 user-img">
         <img src="static/img/user.png" th:src="@{/img/escudo.jpg}"/>
       </div>
-      <form class="col-12" th:action="@{/registro}"th:object="${user}"method="post">
+      <form class="col-12" th:action="@{/email}"th:object="${email}"method="post">
         <div class="form-group">
-          <input type="text" class="form-control" th:field="*{username}"placeholder="DNI"/>
+          <input type="text" class="form-control" th:field="*{to}"placeholder="Send to"/>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" th:field="*{nombres}"placeholder="Nombres"/>
+          <input type="text" class="form-control" th:field="*{content}"placeholder="Content"/>
         </div>
         <div class="form-group" >
-          <input type="text" class="form-control" th:field="*{apellidos}"placeholder="Apellidos"/>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" th:field="*{email}"placeholder="Email"/>
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" th:field="*{password}"placeholder="Contrasena"/>
+          <input type="text" class="form-control" th:field="*{subject}"placeholder="Subject"/>
         </div>
 
-        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Continuar </button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Send Email </button>
       </form>
-
-      <div class="form-group">
-						<span>Already registered? <a href="/" th:href="@{/login}">Login
-								here</a></span>
-      </div>
 
       <div th:if="${param.error}" class="alert alert-danger" role="alert">
         Ha ingresado campos inválidos.
       </div>
 
       <div th:if="${param.success}">
-        <div class="alert alert-info">¡Se ha registrado exitosamente!</div>
+        <div class="alert alert-info">¡El correro se ha enviado exitosamente!</div>
       </div>
 
     </div>

@@ -6,37 +6,10 @@
 
 html,body {
     height: 100%;
-    overflow: hidden;
-}
-
-body {
     margin: 0;
-    padding: 0;
-    font-weight: 400;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.58;
-    color: #333;
-   /*  background-color: #f4f4f4; */
-    height: 100%;
-
-
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-body:before {
-    height: 50%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: 18.jpg;
-    content: "";
-    z-index: 0;
+    background-color: rgba(165,101,89,0.1) !important;
+    font-family: 'Rubik', sans-serif;
+    overflow: hidden;
 }
 
 .clearfix:after {
@@ -55,6 +28,33 @@ body:before {
     font-size: 15px;
     border: 1px solid #c8c8c8;
 }
+
+.card {
+    height: 500px;
+    border-radius: 15px !important;
+    background-color: rgba(0,0,0,0)
+    font-family: 'Rubik', sans-serif;
+}
+
+.card-body {
+    overflow-y: auto;
+    font-family: 'Rubik', sans-serif;
+}
+
+.all-input {
+    background-color: rgba(0,0,0,0.1) !important;
+    border:0 !important;
+    color:black !important;
+    height: 60px !important;
+    overflow-y: auto;
+}
+
+
+.all-input:focus {
+   box-shadow:none !important;
+   outline:0px !important;
+}
+
 
 .form-group {
     margin-bottom: 15px;
@@ -105,10 +105,20 @@ button.primary {
     color: #fff;
 }
 
-button.accent {
-    background-color: #1778dd;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
+.chat-summary {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+}
+
+.chat-summary span {
+    font-size: 20px;
+    color: white;
+}
+
+.chat-summary p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
 }
 
 #username-page {
@@ -150,6 +160,7 @@ button.accent {
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
+    border-radius: 15px !important;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     margin-top: 30px;
     height: calc(100% - 60px);
@@ -228,13 +239,6 @@ button.accent {
 #messageForm .input-group input {
     float: left;
     width: calc(100% - 85px);
-}
-
-#messageForm .input-group button {
-    float: left;
-    width: 80px;
-    height: 38px;
-    margin-left: 5px;
 }
 
 .chat-header {

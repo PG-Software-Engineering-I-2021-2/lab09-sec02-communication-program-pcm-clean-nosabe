@@ -1,6 +1,6 @@
 package controller;
 
-import data.entities.Message;
+import data.model.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
