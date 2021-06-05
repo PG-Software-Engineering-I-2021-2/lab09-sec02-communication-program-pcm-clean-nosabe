@@ -58,6 +58,7 @@ public class UserController {
         }
     }
 
+/*
     @ResponseBody
     @GetMapping("/fetchAllUsers")
     public List<User> fetchALl() {
@@ -70,5 +71,5 @@ public class UserController {
         }
         return lista;
     }
-
+*/
 }

@@ -3,86 +3,48 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Chat</title>
-    <meta charset="UTF-8">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-    <!--    libs for stomp and sockjs-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <!--    end libs for stomp and sockjs-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"
-          type="text/css">
-    <link href="css/style.css" rel="stylesheet">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css" />
 </head>
-<body>
-<!--<span th:if="${session.user!=null}"> Bienvenido/a <span th:text="${session.user.nombres}"></span></span>-->
-<div class="container clearfix">
-    <div class="people-list" id="people-list">
-        <div class="search">
-<!--            <input id="username" placeholder="search" type="text"/>-->
-            <button onclick="fetchAll()">Refresh</button>
-        </div>
-        <ul class="list" id="usersList"></ul>
-    </div>
+<body th:background="@{/img/18.jpg}"
+      style="background-position: center; background-repeat: no-repeat; background-size: cover;">
+<span class="hidden" th:if="${session.user!=null}"> Bienvenido/a <span id="user" th:text="${session.user.username}"></span></span>
+<span th:if="${session.user!=null}"> Bienvenido/a <span id="nombre" th:text="${session.user.nombres}"></span></span>
 
-    <div class="chat">
-        <div class="chat-header clearfix">
-            <img alt="avatar" height="55px" width="55px" th:src="@{/img/escudo.jpg}"/>
+    <noscript>
+        <h2>Sorry! Your browser doesn't support Javascript</h2>
+    </noscript>
 
-            <div class="chat-about">
-                <div class="chat-width" id="selectecUserId"></div>
-                <div class="chat-num-messages"></div>
+    <div id="chat-page">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Republica del Perú - PCM</h2>
+                <form id="logoutForm" th:action="@{/logout}" onsubmit="return leave()" method="post">
+                    <input type="submit" value="Cerrar Sesion"/>
+                </form>
             </div>
-            <i class="fa fa-star"></i>
-        </div> <!--        end chat header-->
-
-        <div class="chat-history">
-            <ul>
+<!--            <div class="connecting">Conectando...</div>-->
+            <ul id="messageArea">
 
             </ul>
-        </div> <!--        end chat history-->
-        <div class="chat-message clearfix">
-            <textarea id="message-to-sand" name="message-to-send" placeholder="Digite uma mesagem" rows="3"></textarea>
-
-            <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-            <i class="fa fa-file-image-o"></i>
-
-            <button id="sendBtn">Send</button>
-        </div> <!--        end chat-message-->
-    </div> <!--    end chat-->
-</div> <!--end container-->
-
-<script id="message-template" type="text/x-handlebars-template">
-    <li class="clearfix">
-        <div class="message-data align-right">
-            <span class="message-data-time">{{time}}, Today</span> &nbsp; &nbsp;
-            <span class="message-data-name">You</span> <i class="fa fa-circle me"></i>
+            <form id="messageForm" name="messageForm" nameForm="messageForm">
+                <div class="form-group">
+                    <div class="input-group clearfix">
+                        <input type="text" id="message" placeholder="Type a message..."
+                               autocomplete="off" class="form-control" />
+                        <button type="submit" class="primary">Enviar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="message other-message float-right">
-            {{messageOutput}}
-        </div>
-    </li>
-</script>
+    </div>>
 
-<script id="message-response-template" type="text/x-handlebars-template">
-    <li>
-        <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle online"></i> {{userName}}</span>
-            <span class="message-data-time">{{time}}, Today</span>
-        </div>
-        <div class="message my-message">
-            {{response}}
-        </div>
-    </li>
-</script>
 
-<script src="js/custom.js"></script>
-<script src="js/chat.js"></script>
-
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Cerrar Sesion"/>
-</form>
-
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/chat.js"></script>
 </body>
 </html>
